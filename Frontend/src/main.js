@@ -3,5 +3,5 @@
  */
 
 $(function () {
-   alert("Hello World!");
+
 });

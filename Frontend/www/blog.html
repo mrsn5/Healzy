@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Healzy Blog</title>
+
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- LESS основний файл -->
+    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
+    <!-- LESS JavaScript компілятор -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+
+    <!-- Google Maps -->
+    <script	type="text/javascript"
+               src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB2yUg1gvX2eiakImTt5iZIKlmv3LiM2m4">
+    </script>
+
+</head>
+<body>
+
+    <div class="header">
+        <div class="nav-panel">
+
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><span class="green">HEAL</span><span class="red">Z</span><span class="green">Y</span></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="nav navbar-nav navbar-right" >
+                            <li class="nav-item"><a class="nav-link" href="#description">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./gallery.html">Gallery</a></li>
+                            <li class="dropdown nav-item">
+                                <button onclick="location.href='./archive.html'" class="dropbtn">Archive</button>
+                                <div class="dropdown-content">
+                                    <a href="./archive.html">Books</a>
+                                    <a href="./archive.html">Audios</a>
+                                    <a href="./archive.html">Films</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item"><a class="nav-link" href="./contacts.html">Contacts</a></li>
+
+
+                        </ul>
+
+
+                    </div>
+                </div>
+            </nav>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="articles-list col-md-9">
+            <div class="content">
+                <div class="article-short">
+                    <img src="assets/images/salade.jpg">
+                    <h3>Healthy diet</h3>
+                    <p>В основе меню многих диет — салаты для похудения. Если они овощные или с добавлением нежирного мяса, то содержат небольшое количество калорий. Из-за этого их можно есть...</p>
+                    <a href="#">Читать дальше >> </a>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="article-short">
+                    <img src="assets/images/salade.jpg">
+                    <h3>Healthy diet</h3>
+                    <p>В основе меню многих диет — салаты для похудения. Если они овощные или с добавлением нежирного мяса, то содержат небольшое количество калорий. Из-за этого их можно есть...</p>
+                    <a href="#">Читать дальше >> </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter col-md-3">
+            <div class="content">
+                <h3>Фильтр</h3>
+                <div class="filter-list"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- jQuery JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Own JavaScript -->
+    <script type="text/javascript"  src="assets/js/main.js"></script>
+</body>
+</html>

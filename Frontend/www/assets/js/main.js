@@ -4,6 +4,6 @@
  */
 
 $(function () {
-   alert("Hello World!");
+
 });
 },{}]},{},[1]);
