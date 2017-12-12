@@ -4,6 +4,8 @@
 @ExilaryColor: #94f0aa;
 @NeutralColor: grey;
 
+@LogoFont: 'Maven Pro', sans-serif;
+
 body {
   background-color: @White;
   margin: 20px;
@@ -69,25 +71,32 @@ body {
   }
 }
 
+.navbar-brand {
+  font-family: @LogoFont;
+  font-size: 40px;
+  border: 5px solid @ExilaryColor;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 15px;
+  a:focus, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+  .green {
+    font-weight: 900;
+    color: @ExilaryColor;
+  }
+  .red {
+    font-weight: 900;
+    color: @MainColor;
+  }
+}
+
 .header {
   height: 500px;
   background-size: cover;
 
-  .navbar-brand {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 40px;
-    border: 5px solid @ExilaryColor;
-    padding-right: 5px;
-    padding-left: 5px;
-    .green {
-      font-weight: 900;
-      color: @ExilaryColor;
-    }
-    .red {
-      font-weight: 900;
-      color: @MainColor;
-    }
-  }
+  /**/
 
   .navbar {
 
