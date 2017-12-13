@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "bot": "nodemon Backend/HealzyBot/index.js",
-    "calorizator": "nodemon Backend/Calorizator/calorizator.js"
+    "calorizator": "nodemon Backend/Calorizator/calorizator.js",
+    "blog": "nodemon Backend/Articles/articles.js"
   },
   "author": "",
   "license": "ISC",

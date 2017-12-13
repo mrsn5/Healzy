@@ -1,11 +1,51 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+
+var API_URL = "http://localhost:5050";
+
+
+function backendGet(url, callback) {
+
+    $.ajax({
+        url: API_URL + url,
+        type: 'GET',
+        success: function(data){
+            callback(null, data);
+        },
+        error: function() {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+function backendPost(url, data, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'POST',
+        contentType : 'application/json',
+        data: JSON.stringify(data),
+        success: function(data){
+            callback(null, data);
+        },
+        error: function() {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+exports.getArticleList = function(callback) {
+    console.log("API --> ");
+    backendGet("/api/get-article-list/", callback);
+};
+},{}],2:[function(require,module,exports){
 /**
  * Created by sannguyen on 13.12.17.
  */
 
 
 var Templates = require('./Templates');
-var Articles_List = require('./Blog_List');
+var API = require('./API');
+
+var Articles_List;
 
 function showOneArticle(article) {
     var html_code = Templates.ArticleReview_OneItem({article: article});
@@ -15,35 +55,24 @@ function showOneArticle(article) {
 }
 
 function init() {
-    showOneArticle(Articles_List[0]);
-    showOneArticle(Articles_List[0]);
+    console.log("++++++++++++++++++++INIT");
+    API.getArticleList(function(err, list) {
+        if(err) {
+            alert("Can't load article list ");
+        } else {
+            Articles_List = list;
+            showOneArticle(Articles_List[0]);
+            showOneArticle(Articles_List[1]);
+        }
+    });
 }
+
+
 
 exports.init = init;
 
 
-},{"./Blog_List":2,"./Templates":4}],2:[function(require,module,exports){
-/**
- * Created by sannguyen on 13.12.17.
- */
-
-var article_info = [
-    {
-        image: "assets/images/salade.jpg",
-        title: "Healthy diet",
-        category: "Diets",
-        content: "В основе меню многих диет — салаты для похудения. Если они овощные или с добавлениемнежирного мяса, то содержат небольшое количество калорий. Из-за этого их можноесть..."
-    },
-    {
-        image: "assets/images/food1.jpg",
-        title: "Cocktails",
-        category: "Cocktails",
-        content: "Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекраснодополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию..."
-    }
-];
-
-module.exports = article_info;
-},{}],3:[function(require,module,exports){
+},{"./API":1,"./Templates":4}],3:[function(require,module,exports){
 var map;
 var service;
 var infowindow;
@@ -323,7 +352,8 @@ $(function () {
 
     Blog.init();
 });
-},{"./Blog":1,"./Map":3}],6:[function(require,module,exports){
+
+},{"./Blog":2,"./Map":3}],6:[function(require,module,exports){
 
 },{}],7:[function(require,module,exports){
 /*

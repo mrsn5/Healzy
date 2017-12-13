@@ -4,7 +4,9 @@
 
 
 var Templates = require('./Templates');
-var Articles_List = require('./Blog_List');
+var API = require('./API');
+
+var Articles_List;
 
 function showOneArticle(article) {
     var html_code = Templates.ArticleReview_OneItem({article: article});
@@ -14,9 +16,19 @@ function showOneArticle(article) {
 }
 
 function init() {
-    showOneArticle(Articles_List[0]);
-    showOneArticle(Articles_List[0]);
+    console.log("++++++++++++++++++++INIT");
+    API.getArticleList(function(err, list) {
+        if(err) {
+            alert("Can't load article list ");
+        } else {
+            Articles_List = list;
+            showOneArticle(Articles_List[0]);
+            showOneArticle(Articles_List[1]);
+        }
+    });
 }
+
+
 
 exports.init = init;
 

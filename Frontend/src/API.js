@@ -1,4 +1,7 @@
 
+var API_URL = "http://localhost:5050";
+
+
 function backendGet(url, callback) {
 
     $.ajax({
@@ -27,3 +30,8 @@ function backendPost(url, data, callback) {
         }
     })
 }
+
+exports.getArticleList = function(callback) {
+    console.log("API --> ");
+    backendGet("/api/get-article-list/", callback);
+};

@@ -2,6 +2,7 @@
  * Created by sannguyen on 13.12.17.
  */
 
+/*
 var article_info = [
     {
         image: "assets/images/salade.jpg",
@@ -17,4 +18,5 @@ var article_info = [
     }
 ];
 
-module.exports = article_info;
+
+module.exports = article_info;*/
