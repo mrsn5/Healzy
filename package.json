@@ -2,21 +2,39 @@
   "name": "Healzy",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bot": "nodemon Backend/HealzyBot/index.js",
+    "calorizator": "nodemon Backend/Calorizator/calorizator.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apidoc": "^0.17.6",
     "basil.js": "^0.4.3",
-    "body-parser": "^1.14.2",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
     "brfs": "^1.4.3",
+    "busboy": "^0.2.14",
+    "connect-mongo": "^2.0.0",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.4.1",
-    "express": "^4.13.4",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
     "grunt-contrib-watch": "^0.6.1",
-    "morgan": "^1.6.1"
+    "image-type": "^3.0.0",
+    "mongoose": "^4.13.7",
+    "mongoose-unique-validator": "^1.0.6",
+    "morgan": "^1.6.1",
+    "node-telegram-bot-api": "^0.29.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
   }
 }
