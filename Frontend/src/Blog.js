@@ -24,6 +24,8 @@ function init() {
             Articles_List = list;
             showOneArticle(Articles_List[0]);
             showOneArticle(Articles_List[1]);
+            showOneArticle(Articles_List[1]);
+            showOneArticle(Articles_List[0]);
         }
     });
 }
