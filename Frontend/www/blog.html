@@ -1,116 +1,138 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Healzy Blog</title>
 
-    <!-- Bootsrap CSS -->
+    &lt;!&ndash; Bootsrap CSS &ndash;&gt;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- LESS основний файл -->
+    &lt;!&ndash; LESS основний файл &ndash;&gt;
     <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
-    <!-- LESS JavaScript компілятор -->
+    &lt;!&ndash; LESS JavaScript компілятор &ndash;&gt;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
-
-    <!-- Google Maps -->
-    <script	type="text/javascript"
-               src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB2yUg1gvX2eiakImTt5iZIKlmv3LiM2m4">
-    </script>
-
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
 
 </head>
 <body>
 
-    <div class="header">
-        <div class="nav-panel">
-
-            <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <div class="navbar-brand" style="height: 60px">
-                        <a href="#"><span class="green">HEAL</span><span class="red">Z</span><span class="green">Y</span></a>
-                        </div>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="nav navbar-nav navbar-right" >
-                            <li class="nav-item"><a class="nav-link" href="#description">About Us</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./gallery.html">Gallery</a></li>
-                            <li class="dropdown nav-item">
-                                <button onclick="location.href='./archive.html'" class="dropbtn">Archive</button>
-                                <div class="dropdown-content">
-                                    <a href="./archive.html">Books</a>
-                                    <a href="./archive.html">Audios</a>
-                                    <a href="./archive.html">Films</a>
-                                </div>
-                            </li>
-
-                            <li class="nav-item"><a class="nav-link" href="./contacts.html">Contacts</a></li>
-
-
-                        </ul>
-
-
-                    </div>
-                </div>
-            </nav>
-
-
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">HEAL<span>Z</span>Y</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html#aboutUs">About</a></li>
+                <li><a href="#">Calories</a></li>
+                <li><a href="gyms.html">Gyms</a></li>
+                <li><a class="lastLI"  href="blog.html">Blog</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
     <div class="container">
-        <div class="articles-list col-md-9">
-            <div class="content">
-                <div class="article-short">
-                    <img src="assets/images/salade.jpg">
-                    <h3>Healthy diet</h3>
-                    <p>В основе меню многих диет — салаты для похудения. Если они овощные или с добавлением нежирного мяса, то содержат небольшое количество калорий. Из-за этого их можно есть...</p>
-                    <a href="#">Читать дальше >> </a>
+        <div class="section group category-products row">
+            <div class="col-md-4 filtering">
+                <div class="category_header">
+                    <div class="line"></div>
+                    <div class="name">Filters</div>
+                    <span class="filters glyphicon glyphicon-filter" aria-hidden="true"></span>
                 </div>
-            </div>
-
-            <div class="content">
-                <div class="article-short">
-                    <img src="assets/images/food1.jpg">
-                    <h3>Cocktails</h3>
-                    <p>Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекрасно дополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию...</p>
-                    <a href="#">Читать дальше >> </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="filter col-md-3">
-            <div class="content">
-                <h3>Фильтр</h3>
-                <div class="filter-list">
-                    <div class="checkbox">
-                        <input id="checkBox" type="checkbox" id="dietsFilter" name="diets" >
-                        <label for="dietsFilter">Diets</label>
+                <ul class="according-filters">
+                    <li class="topic" >
+                    <div class="dropdown">
+                        <button  class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Topic
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a>Diets</a></li>
+                            <li><a>Cocktails</a></li>
+                        </ul>
                     </div>
-                    <div class="checkbox">
-                        <input id="cocktailsBox" type="checkbox" id="cocktailsFilter" name="diets" >
-                        <label for="cocktailsFilter">Cocktails</label>
+                </li>
+                    <li class="time" >
+                        <div class="dropdown">
+                            <button  class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Type
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" >
+                                <li><a>Recipes</a></li>
+                                <li><a>Articles</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sorting col-md-8">
+                <div class="category_header">
+                    <div class="line"></div>
+                    <div class="name">Sort results</div>
+                    <span class="filters glyphicon glyphicon-sort" aria-hidden="true"></span>
+                </div>
+
+                <div class="sorting-options">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Sort by
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a id="Least1">Most recent</a></li>
+                            <li><a id="Most1">Least recent</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="articles-list">
+                    <div class="content">
+                        <div class="article-short">
+                            <img src="assets/images/salade.jpg">
+                            <h3>Healthy diet</h3>
+                            <p>В основе меню многих диет — салаты для похудения. Если они овощные или с добавлением нежирного мяса, то содержат небольшое количество калорий. Из-за этого их можно есть...</p>
+                            <a href="#">Читать дальше >> </a>
+                        </div>
                     </div>
 
+                    <div class="content">
+                        <div class="article-short">
+                            <img src="assets/images/food1.jpg">
+                            <h3>Cocktails</h3>
+                            <p>Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекрасно дополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию...</p>
+                            <a href="#">Читать дальше >> </a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+
         </div>
     </div>
 
+<footer>
+    <details>
+        <summary>&#169;Nguyen&Manzhura, 2017 </summary>
+        <p>This site is created by sophomores of 'Kyiv-Mohyla Academy' Anne Manzhura and San Nguyen.</p>
+    </details>
+</footer>
 
 
-
-
-    <!-- jQuery JavaScript -->
+    &lt;!&ndash; jQuery JavaScript &ndash;&gt;
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-    <!-- Bootstrap JavaScript -->
+    &lt;!&ndash; Bootstrap JavaScript &ndash;&gt;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!-- Own JavaScript -->
+    &lt;!&ndash; Own JavaScript &ndash;&gt;
     <script type="text/javascript"  src="assets/js/main.js"></script>
 </body>
 </html>
+-->

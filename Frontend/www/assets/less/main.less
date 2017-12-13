@@ -3,170 +3,145 @@
 @MainColor: #ff4c46;
 @ExilaryColor: #94f0aa;
 @NeutralColor: grey;
-
+@fontHeader: 'Barlow Semi Condensed', sans-serif;
 @LogoFont: 'Maven Pro', sans-serif;
-
+html {
+  height: 100%;
+}
+*{
+  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B", arial, sans-serif;
+  //font-family:@fontHeader;
+}
 body {
   background-color: @White;
-  margin: 20px;
-}
-
-.content {
-  margin-bottom: 20px;
-  background-color: @White;
-  border-radius: 10px;
-  border: 1px solid @NeutralColor;
-}
-
-.article-short {
-  padding: 20px;
-  border-radius: 10px;
-  padding-left: 320px;
   position: relative;
-  height: 300px;
-
-  h3 {
-    margin-top: 0px;
-  }
-
-  p {
-    font-size: 20px;
-  }
-
-  a {
-    font-size: 20px;
-    color: @MainColor;
-  }
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    float: left;
-    width: 300px;
-    height: 300px;
-    border-radius: 10px 0px 0px 10px;
-    object-fit: cover;
-  }
+  //min-height: 100%;
+  padding-bottom: 100px;
 }
 
-.filter{
-  h3 {
-    margin-left: 20px;
-    margin-right: 20px;
-    padding-bottom: 10px;
-    border-bottom: solid 1px @NeutralColor;
+@import "./homepage.less";
+@import "./blog.less";
 
-  }
-  .filter-list {
-    padding: 0px 20px;
-    input {
-      margin-left: 0px;
-      width: 30px;
+
+/*NAVBAR*/
+.navbar-default{
+  background-color: #fff;
+  color: #333;
+  border-top: 1px solid #bac4c9;
+  border-bottom: 1px solid #bac4c9;
+  .container-fluid {
+    width: 90%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    .navbar-header{
+      margin-top: 15px;
+      a{
+        font-size:2.5em;
+        span{
+          color: #b50000;
+        }
+      }
     }
-    label {
-      margin-left: 5px;
-      font-size: 18px;
+    .navbar-collapse {
+      font-size: 1.9em;
+      color: rgba(51, 51, 51, 0.83);
+      .navbar-nav {
+        li {
+          height: 80px;
+          text-align: left;
+          padding-left:15px;
+          a {
+            padding-right:29px;
+            font-family: @fontHeader !important;
+            margin-top: 15px;
+            color: rgba(51, 51, 51, 0.83);
+            text-decoration: none;
+            border-right: outset 1.5px rgba(51, 51, 51, 0.56);
+            cursor: pointer;
+          }
+          a:hover {
+            color: red;
+            font-weight: 400;
+            cursor: pointer;
+          }
+          a.lastLI{
+            border-right: none;
+          }
+        }
+      }
+
     }
   }
 }
-
-.navbar-brand {
-  font-family: @LogoFont;
-  font-size: 40px;
-  border: 5px solid @ExilaryColor;
-  padding-right: 5px;
-  padding-left: 5px;
-  padding-bottom: 15px;
-  a:focus, a:hover {
-    color: white;
-    text-decoration: none;
-  }
-  .green {
-    font-weight: 900;
-    color: @ExilaryColor;
-  }
-  .red {
-    font-weight: 900;
-    color: @MainColor;
-  }
-}
-
-.header {
-  height: 500px;
-  background-size: cover;
-
-  /**/
-
-  .navbar {
-
-    padding-top: 30px;
-    margin-right: 30px;
-    margin-left: 30px;
-    font-size: 20px;
-    text-align: right;
-    z-index: 2;
-
+@media (max-width: 768px) {
+  .navbar-default {
     .container-fluid {
-      padding-right: 0;
-    }
+      .navbar-header {
+        margin-top: 0;
+      }
+      .navbar-nav {
+        li {
+          height: 50px !important;
+          text-align: left;
+          a {
+            color: rgba(51, 51, 51, 0.83);
+            text-decoration: none;
+            cursor: pointer;
+            border-right: none !important;
+          }
+          a:hover {
+            color: red;
+            font-weight: 400;
+            cursor: pointer;
+          }
+        }
 
-    li {
-      a, button {
-        border-radius: 0px;
-        color: @ExilaryColor;
-        font-family: "Helvetica Neue";
       }
     }
-
-    li {
-      a:hover {
-        background-color: @NeutralColor;
+  }
+  .info{
+    h1{
+      font-size:2.5em;
+    }
+    p{
+      font-size:1.5em;
+    }
+  }
+  .overlay {
+    .inner_page{
+      .title{
+        font-size: 2em;
+        margin-top: 50% !important;
+        text-align: center;
+        font-family: @fontHeader;
       }
-    }
-
-    .dropbtn {
-      background-color: transparent;
-      color: @ExilaryColor;
-      font-size: 20px;
-      padding-left: 15px;
-      padding-right: 15px;
-      border: none;
-      cursor: pointer;
-      height: 50px;
-    }
-
-    .dropdown {
-
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: @NeutralColor;
-      min-width: 100%;
-      text-align: center;
-      z-index: 3;
-    }
-
-    .dropdown-content a {
-      color: @ExilaryColor;
-      font-size: 16px;
-      padding: 5px 10px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #f1f1f1
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-      background-color: @NeutralColor;
     }
   }
 }
+
+footer{
+  font-size:1.3em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width:100%;
+  background: white;
+  border-top: 1px solid #bac4c9;
+  text-align: center;
+  color:rgba(161,161,161,0.91);
+  padding-top: 20px;
+  height:70px;
+  a, a:hover{
+    color:rgba(161,161,161,0.91);
+    bottom:0;
+  }
+  details{
+    outline: none;
+    summary{
+      outline: none;
+    }
+  }
+}
+
