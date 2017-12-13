@@ -75,7 +75,7 @@ bot.onText(/\/info/, function (msg) {
                     });
                 });
             } else {
-                bot.sendMessage(msg.chat.id, "Вибач, але я не знаю такого продукта");
+                bot.sendMessage(msg.chat.id, "Вибач, але я не знаю такого продукту");
             }
         });
 });
