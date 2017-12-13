@@ -1,0 +1,88 @@
+
+
+
+
+<% include common/header.ejs %>
+
+<div class="container">
+    <div class="section group category-products row">
+        <div class="col-md-4 filtering">
+            <div class="category_header">
+                <div class="line"></div>
+                <div class="name">Filters</div>
+                <span class="filters glyphicon glyphicon-filter" aria-hidden="true"></span>
+            </div>
+            <ul class="according-filters">
+                <li class="topic" >
+                    <div class="dropdown">
+                        <button  class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Topic
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a>Diets</a></li>
+                            <li><a>Cocktails</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="time" >
+                    <div class="dropdown">
+                        <button  class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Type
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a>Recipes</a></li>
+                            <li><a>Articles</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sorting col-md-8">
+            <div class="category_header">
+                <div class="line"></div>
+                <div class="name">Sort results</div>
+                <span class="filters glyphicon glyphicon-sort" aria-hidden="true"></span>
+            </div>
+
+            <div class="sorting-options">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Sort by
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a id="Least1">Most recent</a></li>
+                        <li><a id="Most1">Least recent</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="articles-list">
+                <div class="content">
+                    <div class="article-short">
+                        <img src="assets/images/salade.jpg">
+                        <h3>Healthy diet</h3>
+                        <p>В основе меню многих диет — салаты для похудения. Если они овощные или с добавлением нежирного мяса, то содержат небольшое количество калорий. Из-за этого их можно есть...</p>
+                        <a href="#">Читать дальше >> </a>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="article-short">
+                        <img src="assets/images/food1.jpg">
+                        <h3>Cocktails</h3>
+                        <p>Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекрасно дополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию...</p>
+                        <a href="#">Читать дальше >> </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<% include common/footer.ejs %>
