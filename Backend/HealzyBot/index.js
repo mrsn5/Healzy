@@ -26,17 +26,17 @@ bot.onText(/\/start/, function (msg) {
         last_name: msg.chat.last_name,
         id: msg.chat.id
     }).save(function (err) {
-        if(err) console.log(err);
+        if (err) console.log(err);
     });
 })
 
-bot.onText(/[\s\S]*/, function (msg) {
-    console.log(msg);
-})
+/*bot.onText(/[\s\S]*!/, function (msg) {
+ console.log(msg);
+ })*/
 
 
 bot.onText(/\/send/, function (msg) {
-    if (msg.chat.id === 337800229){
+    if (msg.chat.id === 337800229) {
         const text = msg.text.substring(6);
         Follower.find(function (err, follower) {
             if (!err)
@@ -48,40 +48,69 @@ bot.onText(/\/send/, function (msg) {
 });
 
 bot.onText(/\/add/, function (msg) {
-    if (msg.chat.id === 337800229){
+    if (msg.chat.id === 337800229) {
         const text = msg.text.substring(5);
         new Product({title: text}).save();
     }
 });
 
-bot.onText(/\/info/, function (msg) {
-    var text = msg.text.substring(5);
+bot.onText(/[\s\S]*/, function (msg) {
+    var text = msg.text;
     text = text.trim();
     console.log(text);
+
+
     Product.find(
         {
-            title: text
-        }, function (err, product) {
-            var html;
-            if(!err && product.length != 0) {
-                product.forEach(function (p) {
-                    html =
-                        '<b>Калорії</b> : <i>' + p.calories + '</i> '+
-                        '<b>Жири</b> : <i>' + p.fats + '</i> '+
-                        '<b>Вуглеводи</b> : <i>' + p.carbohydrates + '</i> '+
-                        '<b>Білки</b> : <i>' + p.proteins + '</i> ';
-                    bot.sendMessage(msg.chat.id, html, {
-                        parse_mode: 'HTML'
-                    });
-                });
+            title: new RegExp('^'+text+'$', 'i')
+        }, function (err, product_one) {
+            if (product_one.length == 1) {
+                showProductStats(product_one[0], msg);
             } else {
                 bot.sendMessage(msg.chat.id, "Вибач, але я не знаю такого продукту");
+                Product.find(
+                    {
+                        title: new RegExp('[\s\S]*(' + text + '){1}[\s\S]*', 'i')
+                    }, function (err, product) {
+
+                        if (!err && product.length != 0) {
+                            if (product.length <= 5) {
+                                product.forEach(function (p) {
+                                    showProductStats(p, msg);
+                                });
+                            } else {
+                                for (var i = 0; i < 5; i++) {
+                                    showProductStats(product[i], msg);
+                                }
+                            }
+                        } else {
+                            bot.sendMessage(msg.chat.id, "Вибач, але я не знаю такого продукту");
+                        }
+
+                    });
             }
         });
 });
 
+function showProductStats(p, msg) {
+    var html;
+    if (p.lang == "UKR" || p.lang == "RUS") {
+        html = '' + p.title + '\n' +
+            '*Калорії* : _' + p.calories + ' ккал_\n' +
+            '*Жири* : _' + p.fats + ' г_\n' +
+            '*Вуглеводи* : _' + p.carbohydrates + ' г_\n' +
+            '*Білки* : _' + p.proteins + ' г_\n';
 
+    } else {
+        html = '' + p.title + '\n' +
+            '*Calories* : _' + p.calories + ' kcal_\n' +
+            '*Fats* : _' + p.fats + ' g_\n' +
+            '*Carbohydrates* : _' + p.carbohydrates + ' g_\n' +
+            '*Proteins* : _' + p.proteins + ' g_\n';
+    }
+    bot.sendMessage(msg.chat.id, html, {
+        parse_mode: 'Markdown'
+    });
+}
 
 //381008276 - Anne
-//https://api.telegram.org/bot503726174:AAHgyg44GQ_YY-RqA4Pm70YT8lFnSA_Zg6c/sendMessage?chat_id=@337800229,text=тест.
-

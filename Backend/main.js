@@ -5,13 +5,16 @@ var bodyParser = require('body-parser');
 
 function configureEndpoints(app) {
     var pages = require('./pages');
-
-   /* var api = require('./api');
+    var api = require('./api');
+   /*
 
     //Налаштування URL за якими буде відповідати сервер
     //Отримання списку піц
     app.get('/api/get-pizza-list/', api.getPizzaList);
     app.post('/api/create-order/', api.createOrder);*/
+    app.get("/api/get-article-list/", api.getArticleList);
+    app.post("/api/find-product/", api.findProduct);
+
 
     //Сторінки
     //Головна сторінка
@@ -25,6 +28,7 @@ function configureEndpoints(app) {
     app.use(express.static(path.join(__dirname, '../Frontend/www')));
 
 }
+
 function startServer(port) {
     //Створюється застосунок
     var app = express();
