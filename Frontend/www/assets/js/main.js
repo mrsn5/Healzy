@@ -357,8 +357,9 @@ exports.ArticleReview_OneItem = ejs.compile("<div class=\"content\">\n    <div c
 
 },{"ejs":7}],5:[function(require,module,exports){
 
-
 $(function () {
+    var Map= require('./Map');
+    
     var Map= require('./Map');
     var Blog = require('./Blog');
 
