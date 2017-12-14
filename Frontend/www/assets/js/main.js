@@ -53,23 +53,25 @@ var API = require('./API');
 var All_Articles;
 var Articles_List;
 
+var currPage;
+var maxPage;
+
 var $article_list = $('#articles-list');
 
 $("#Least1").click(function () {
-
-    $article_list.html("");
+    paginationInit();
     Articles_List.sort(leastRecent);
     showArticles();
 });
 
 $("#Most1").click(function () {
-    $article_list.html("");
+    paginationInit();
     Articles_List.sort(mostRecent);
     showArticles();
 });
 
 $("#articlesf").click(function () {
-    $article_list.html("");
+    paginationInit();
     Articles_List = All_Articles.filter(function (p1) {
         console.log(p1.type);
         if (p1.type === "Articles") return true;
@@ -78,10 +80,8 @@ $("#articlesf").click(function () {
     showArticles();
 });
 
-
 $("#recipesf").click(function () {
-    $article_list.html("");
-
+    paginationInit();
     Articles_List = All_Articles.filter(function(p1) {
         console.log(p1.type);
         if (p1.type === "Recipes") return true;
@@ -91,7 +91,7 @@ $("#recipesf").click(function () {
 });
 
 $("#cocktailsf").click(function () {
-    $article_list.html("");
+    paginationInit();
     Articles_List = All_Articles.filter(function (p1) {
         if (p1.category === "Cocktails") return true;
         else return false;
@@ -100,11 +100,7 @@ $("#cocktailsf").click(function () {
 });
 
 $("#dietsf").click(function () {
-    $article_list.html("");
-    Articles_List = All_Articles;
-
-    console.log(Articles_List);
-
+    paginationInit();
     Articles_List = All_Articles.filter(function (p1) {
         console.log(p1.category);
         if (p1.category === "Diets") return true;
@@ -120,9 +116,12 @@ function showOneArticle(article) {
 }
 
 function showArticles() {
-    Articles_List.forEach(function (a) {
-        showOneArticle(a);
-    })
+    maxPage = Math.floor(Articles_List.length / 5);
+    $article_list.html("");
+    for (var i = 0; i < 5; i++){
+        if (5*currPage+i<Articles_List.length)
+            showOneArticle(Articles_List[5*currPage+i]);
+    }
 }
 
 function leastRecent (p1, p2) {
@@ -137,7 +136,6 @@ function mostRecent (p1, p2) {
     else return 0;
 }
 
-
 function init() {
     console.log("++++++++++++++++++++INIT");
     API.getArticleList(function(err, list) {
@@ -147,12 +145,45 @@ function init() {
             Articles_List = list;
             All_Articles = list;
             Articles_List.sort(mostRecent);
+            currPage = 0;
+            maxPage = Math.floor(Articles_List.length / 5);
             showArticles();
         }
     });
 }
 
+$("#prev").click(function () {
+    if (currPage !== 0) {
+        location.href = "#";
+        if (currPage === maxPage)
+            $("#next").removeClass("disabled");
+        if (currPage === 1)
+            $("#prev").addClass("disabled");
+        currPage--;
+        showArticles();
+    }
+});
 
+$("#next").click(function () {
+    console.log("Next");
+    if (currPage !== maxPage) {
+        location.href = "#";
+        console.log(currPage +" != "+maxPage);
+        if (currPage === 0)
+            $("#prev").removeClass("disabled");
+        if (currPage === maxPage - 1)
+            $("#next").addClass("disabled");
+        currPage++;
+        showArticles();
+    }
+});
+
+function paginationInit() {
+    currPage = 0;
+    $("#prev").addClass("disabled");
+    $("#next").removeClass("disabled");
+    if (maxPage === currPage) $("#next").addClass("disabled");
+}
 
 exports.init = init;
 

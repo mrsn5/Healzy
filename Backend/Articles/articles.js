@@ -35,12 +35,13 @@ function getModel() {
 }
 
 exports.getModel = getModel;
+
 /*
 
 var article_info = [
     {
         image: "assets/images/salade.jpg",
-        title: "Healthy diet",
+        title: "Healthy diet 6",
         category: "Diets",
         content: "В основе меню многих диет — салаты для похудения. Если они овощные или с добавлениемнежирного мяса, то содержат небольшое количество калорий. Из-за этого их можноесть...",
         type: "Articles",
@@ -48,13 +49,16 @@ var article_info = [
     },
     {
         image: "assets/images/food1.jpg",
-        title: "Cocktails",
+        title: "Cocktails 6",
         category: "Cocktails",
         content: "Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекраснодополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию...",
         type: "Recipes",
         date: new Date("2010-08-01"),
     }
 ];
+
+
+
 
 
 
@@ -85,3 +89,4 @@ article_info.forEach(function (a) {
     //console.log(product);
 });
 */
+

@@ -164,14 +164,26 @@
   }
 }
 
+.pagination{
+  width: 100%;
+  span{
+    width: 50%;
+    text-align: center;
+  }
 
+  li{
+    span{
+      color: #b50000;
+    }
+  }
+  li.active{
+    span{
+      color: white;
+      background:#b50000;
+    }
+  }
+}
 
-
-
-
-
-
-
-
-
-
+.pagination>.active>span{
+  border: solid 1px #b50000;
+}

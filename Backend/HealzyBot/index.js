@@ -67,7 +67,6 @@ bot.onText(/[\s\S]*/, function (msg) {
             if (product_one.length == 1) {
                 showProductStats(product_one[0], msg);
             } else {
-                bot.sendMessage(msg.chat.id, "Вибач, але я не знаю такого продукту");
                 Product.find(
                     {
                         title: new RegExp('[\s\S]*(' + text + '){1}[\s\S]*', 'i')
