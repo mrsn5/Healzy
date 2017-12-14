@@ -24,6 +24,8 @@ function configureEndpoints(app) {
 
     app.get('/blog.html', pages.blogPage);
 
+    app.get('/calories.html', pages.caloriesPage);
+
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));
 
