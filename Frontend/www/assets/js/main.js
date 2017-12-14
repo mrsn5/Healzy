@@ -59,22 +59,33 @@ function showOneArticle(article) {
     $('#articles-list').append($node);
 }
 
+function showArticles() {
+    Articles_List.forEach(function (a) {
+        showOneArticle(a);
+    })
+}
+
+function lastRecent (p1, p2) {
+    if (p1.date > p2.date) return 1;
+    else if(p1.date < p2.date) return -1;
+    else return 0;
+}
+
+function mostRecent (p1, p2) {
+    if (p1.date > p2.date) return -1;
+    else if(p1.date < p2.date) return 1;
+    else return 0;
+}
+
 function init() {
-    console.log("TEST------------------");
-    API.findProduct({title: "огурец"}, function (err, res) {
-        console.log(res);
-    });
-    
     console.log("++++++++++++++++++++INIT");
     API.getArticleList(function(err, list) {
         if(err) {
             alert("Can't load article list ");
         } else {
             Articles_List = list;
-            showOneArticle(Articles_List[0]);
-            showOneArticle(Articles_List[1]);
-            showOneArticle(Articles_List[1]);
-            showOneArticle(Articles_List[0]);
+            Articles_List.sort(mostRecent);
+            showArticles();
         }
     });
 }

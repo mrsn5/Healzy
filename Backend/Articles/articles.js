@@ -20,7 +20,9 @@ db_article.once('open', function callback () {
         image: { type: String },
         title: { type: String, unique: true },
         category: { type: String },
-        content: { type: String }
+        content: { type: String },
+        type: { type: String },
+        date: {type: Date}
     });
 
     Article = db_article.model('Article', ArticleSchema);
@@ -33,7 +35,6 @@ function getModel() {
 }
 
 exports.getModel = getModel;
-
 /*
 
 var article_info = [
@@ -41,21 +42,30 @@ var article_info = [
         image: "assets/images/salade.jpg",
         title: "Healthy diet",
         category: "Diets",
-        content: "В основе меню многих диет — салаты для похудения. Если они овощные или с добавлениемнежирного мяса, то содержат небольшое количество калорий. Из-за этого их можноесть..."
+        content: "В основе меню многих диет — салаты для похудения. Если они овощные или с добавлениемнежирного мяса, то содержат небольшое количество калорий. Из-за этого их можноесть...",
+        type: "Articles",
+        date: new Date("2007-08-01"),
     },
     {
         image: "assets/images/food1.jpg",
         title: "Cocktails",
         category: "Cocktails",
-        content: "Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекраснодополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию..."
+        content: "Жиросжигающие коктейли для похудения, как и питательные, а также очищающие – прекраснодополнят любую диету. Они ускоряют метаболизм, чем способствуют быстрому сбрасыванию...",
+        type: "Recipes",
+        date: new Date("2010-08-01"),
     }
 ];
+
+
+
 
 var ArticleSchema = mongoose.Schema({
     image: { type: String },
     title: { type: String, unique: true },
     category: { type: String },
-    content: { type: String }
+    content: { type: String },
+    type: { type: String },
+    date: {type: Date}
 });
 
 
@@ -73,4 +83,5 @@ var Article = db_article.model('Article', ArticleSchema);
 article_info.forEach(function (a) {
     new Article(a).save();
     //console.log(product);
-});*/
+});
+*/
