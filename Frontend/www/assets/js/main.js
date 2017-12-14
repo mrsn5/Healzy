@@ -36,6 +36,11 @@ exports.getArticleList = function(callback) {
     console.log("API --> ");
     backendGet("/api/get-article-list/", callback);
 };
+
+exports.findProduct = function(product_info, callback) {
+    backendPost("/api/find-product/", product_info, callback);
+};
+
 },{}],2:[function(require,module,exports){
 /**
  * Created by sannguyen on 13.12.17.
@@ -55,6 +60,11 @@ function showOneArticle(article) {
 }
 
 function init() {
+    console.log("TEST------------------");
+    API.findProduct({title: "огурец"}, function (err, res) {
+        console.log(res);
+    });
+    
     console.log("++++++++++++++++++++INIT");
     API.getArticleList(function(err, list) {
         if(err) {

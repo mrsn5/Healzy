@@ -16,6 +16,7 @@ function showOneArticle(article) {
 }
 
 function init() {
+    
     console.log("++++++++++++++++++++INIT");
     API.getArticleList(function(err, list) {
         if(err) {

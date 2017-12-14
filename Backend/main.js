@@ -13,6 +13,7 @@ function configureEndpoints(app) {
     app.get('/api/get-pizza-list/', api.getPizzaList);
     app.post('/api/create-order/', api.createOrder);*/
     app.get("/api/get-article-list/", api.getArticleList);
+    app.post("/api/find-product/", api.findProduct);
 
 
     //Сторінки
