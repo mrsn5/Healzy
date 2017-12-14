@@ -99,7 +99,7 @@ function initCalc() {
             for(var i=0;i<allProducts.length;i++)
                 titles.push(allProducts[i].title);
 
-            $( "#automplete-3" ).autocomplete({
+            $( "#automplete" ).autocomplete({
                 minLength:2,
                 delay:300,
                 source: titles
