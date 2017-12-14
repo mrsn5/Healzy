@@ -157,7 +157,36 @@ function init() {
 exports.init = init;
 
 
-},{"./API":1,"./Templates":4}],3:[function(require,module,exports){
+},{"./API":1,"./Templates":5}],3:[function(require,module,exports){
+var API = require('./API');
+
+
+function initCalc() {
+
+
+    var allProducts =[];
+    var titles=[];
+
+    API.findProduct({title: ""}, function (err, res) {
+
+        if(err)
+            alert("Can't load article list ");
+        else{
+            allProducts=res;
+            for(var i=0;i<allProducts.length;i++)
+                titles.push(allProducts[i].title);
+
+            $( "#automplete-3" ).autocomplete({
+                minLength:2,
+                delay:300,
+                source: titles
+            });
+        }
+    });
+}
+
+exports.initCalc = initCalc;
+},{"./API":1}],4:[function(require,module,exports){
 var map;
 var service;
 var infowindow;
@@ -417,7 +446,7 @@ function clearOverlays() {
     markersArray.length = 0;
 }
 google.maps.event.addDomListener(window, 'load', initMap);
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 
 /**
  * Created by sannguyen on 13.12.17.
@@ -428,19 +457,21 @@ var ejs = require('ejs');
 
 exports.ArticleReview_OneItem = ejs.compile("<div class=\"content\">\n    <div class=\"article-short\">\n        <img src=\"<%= article.image %>\">\n        <div class=\"scrolling\">\n            <h3><%= article.title %></h3>\n            <p><%= article.content %></p>\n            <a href=\"#\">Читати далi >> </a>\n        </div>\n    </div>\n</div>\n");
 
-},{"ejs":7}],5:[function(require,module,exports){
-
+},{"ejs":8}],6:[function(require,module,exports){
 
 $(function () {
+
+    var Calculator =require('./Calculator');
     var Map= require('./Map');
     var Blog = require('./Blog');
 
     Blog.init();
+    Calculator.initCalc();
 });
 
-},{"./Blog":2,"./Map":3}],6:[function(require,module,exports){
+},{"./Blog":2,"./Calculator":3,"./Map":4}],7:[function(require,module,exports){
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1308,7 +1339,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":9,"./utils":8,"fs":6,"path":10}],8:[function(require,module,exports){
+},{"../package.json":10,"./utils":9,"fs":7,"path":11}],9:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1474,7 +1505,7 @@ exports.cache = {
   }
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports={
   "_from": "ejs@^2.4.1",
   "_id": "ejs@2.5.7",
@@ -1555,7 +1586,7 @@ module.exports={
   "version": "2.5.7"
 }
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1783,7 +1814,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":11}],11:[function(require,module,exports){
+},{"_process":12}],12:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1969,4 +2000,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[5]);
+},{}]},{},[6]);

@@ -14,3 +14,8 @@ exports.blogPage = function(req, res) {
         pageTitle: 'Blog'
     });
 };
+exports.caloriesPage = function(req, res) {
+    res.render('caloriesPage', {
+        pageTitle: 'Calories'
+    });
+};
