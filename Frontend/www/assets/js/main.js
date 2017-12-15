@@ -126,7 +126,6 @@ function calculateSum(wrappedProduct){
     sumPer100g.fats=(parseFloat(sumPer100g.fats) + parseFloat(wrappedProduct.product.fats)).toFixed(2);
     sumPer100g.carbs=(parseFloat(sumPer100g.carbs) + parseFloat(wrappedProduct.product.carbohydrates)).toFixed(2);
     sumPer100g.calories=(parseFloat(sumPer100g.calories) + parseFloat(wrappedProduct.product.calories)).toFixed(2);
-
 }
 
 function updateList(){
@@ -157,6 +156,25 @@ function updateList(){
     Storage.set("list",Product_List);
 
     Product_List.forEach(showOnePizzaInCart);
+
+    sum=
+        {
+            mass: parseFloat(0),
+            proteins:parseFloat(0),
+            fats: parseFloat(0),
+            carbs: parseFloat(0),
+            calories: parseFloat(0)
+        };
+
+    sumPer100g=
+        {
+            mass: parseFloat(100),
+            proteins:parseFloat(0),
+            fats: parseFloat(0),
+            carbs: parseFloat(0),
+            calories: parseFloat(0)
+        };
+
     Product_List.forEach(calculateSum);
 
     $('.weight_total').text(sum.mass);
@@ -194,6 +212,7 @@ function initCalc() {
             });
         }
     });
+
     sum=
         {
             mass: parseFloat(0),
@@ -212,7 +231,6 @@ function initCalc() {
             calories: parseFloat(0)
         };
 
-
     var saved_products = Storage.get("list");
     if (saved_products)
         Product_List = saved_products;
@@ -221,16 +239,25 @@ function initCalc() {
 }
 
 $(".addProduct").click(function () {
-    if($inputProduct.val().trim()!=="" && $inputMass.val().trim()!==""){
+    if($inputProduct.val().trim()!=="" && $inputMass.val().trim()!=="" && $inputMass.val()>0 ){
         for(i=0; i<allProducts.length; i++){
             if($inputProduct.val().trim()===allProducts[i].title){
                 addOneProduct(allProducts[i], parseFloat($inputMass.val()));
                 $inputProduct.val("");
                 $inputMass.val("");
+                $inputMass.removeClass("wrong_input");
+                $inputProduct.removeClass("wrong_input");
             }
         }
     }
+    else if($inputMass.val().trim()==="" || $inputMass.val()<=0 || !Number.isInteger($inputMass.val())){
+        $inputMass.addClass("wrong_input");
+    }
+    else if($inputProduct.val().trim()===""){
+        $inputProduct.addClass("wrong_input");
+    }
 });
+
 function WrappedProduct(product, mass) {
     this.product = product;
     this.mass = mass;
