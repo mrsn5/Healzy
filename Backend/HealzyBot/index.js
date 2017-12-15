@@ -18,7 +18,9 @@ var Product = DBCalorizator.getModel();
 
 
 bot.onText(/\/start/, function (msg) {
-    const text = "Привіт, " + msg.from.first_name + "!\nЯ Healzy, твій персональний тренер.";
+    const text = "Привіт, " + msg.from.first_name + "!\nМене звати Хелзі 🤖.\n"+
+    "Я дуже люблю їсти, тому я знаю майже все про це. Я можу показати тобі статистику продуктів.\n"+
+            "Просто введи назву продукту";
     bot.sendMessage(msg.chat.id, text);
     console.log(msg);
     new Followers({
