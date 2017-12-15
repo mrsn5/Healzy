@@ -109,7 +109,15 @@ $("#dietsf").click(function () {
 });
 
 
+$(window).resize(function () {
+    var boxWidth = $(window).width()*0.70;
+    var winHeight = ($(window).height() - 80)*0.90;
+    var left = $(window).width()*0.3 / 2;
+    var top = 80 + $(window).height()*0.1 / 2;
 
+    $('#popup-box').css({'width' : boxWidth+'px','height' : winHeight+'px', 'left' : left+'px', 'top' : top+'px'});
+    $('#popup-box').find("img").css({'width':(boxWidth / 2) +'px'});
+});
 
 
 function showOneArticle(article) {
@@ -118,21 +126,33 @@ function showOneArticle(article) {
     $node.find("a").click(function () {
         //alert(article);
         $('#blackout').show();
-        var boxWidth = $(window).width()*0.90;
+        var boxWidth = $(window).width()*0.70;
         var winHeight = ($(window).height() - 80)*0.90;
-        var left = $(window).width()*0.1 / 2;
+        var left = $(window).width()*0.3 / 2;
         var top = 80 + $(window).height()*0.1 / 2;
 
         $('#title-a').text(article.title);
-        $('#text-a').text(article.content);
+        $('#text-a').text("");
 
 
         $('#popup-box').css({'width' : boxWidth+'px','height' : winHeight+'px', 'left' : left+'px', 'top' : top+'px'});
         $('#popup-box').show();
-        $('.bottom').css({'height' : (winHeight-top/2)+'px'})
+        $('#img-a').attr('src', article.image);
+        $('#text-a').css({'height' : (winHeight-top/2)+'px'});
+
+        var img= document.createElement("img");
+        img.src= article.image;
+        img.style.width = (boxWidth / 2) +'px';
+        img.style.cssFloat = "right";
+        document.getElementById('text-a').appendChild(img);
+
+
+        $('#text-a').append(article.content);
+
     });
     $article_list.append($node);
 }
+
 
 
 $('#close').click(function () {
@@ -332,8 +352,7 @@ function updateList(){
             calories: parseFloat(0)
         };
 
-
-    Product_List.forEach(calculateSum);
+  Product_List.forEach(calculateSum);
 
     $('.weight_total').text(sum.mass);
     $('.proteins_total').text(sum.proteins);
@@ -397,16 +416,25 @@ function initCalc() {
 }
 
 $(".addProduct").click(function () {
-    if($inputProduct.val().trim()!=="" && $inputMass.val().trim()!==""){
+    if($inputProduct.val().trim()!=="" && $inputMass.val().trim()!=="" && $inputMass.val()>0 ){
         for(i=0; i<allProducts.length; i++){
             if($inputProduct.val().trim()===allProducts[i].title){
                 addOneProduct(allProducts[i], parseFloat($inputMass.val()));
                 $inputProduct.val("");
                 $inputMass.val("");
+                $inputMass.removeClass("wrong_input");
+                $inputProduct.removeClass("wrong_input");
             }
         }
     }
+    else if($inputMass.val().trim()==="" || $inputMass.val()<=0 || !Number.isInteger($inputMass.val())){
+        $inputMass.addClass("wrong_input");
+    }
+    else if($inputProduct.val().trim()===""){
+        $inputProduct.addClass("wrong_input");
+    }
 });
+
 function WrappedProduct(product, mass) {
     this.product = product;
     this.mass = mass;
@@ -694,7 +722,7 @@ google.maps.event.addDomListener(window, 'load', initMap);
 var ejs = require('ejs');
 
 
-exports.ArticleReview_OneItem = ejs.compile("<div class=\"content\">\n    <div class=\"article-short\">\n        <img src=\"<%= article.image %>\">\n        <div class=\"scrolling\">\n            <h3><%= article.title %></h3>\n            <p><%= article.content %></p>\n            <a href=\"#\">Читати далi >> </a>\n        </div>\n    </div>\n</div>\n");
+exports.ArticleReview_OneItem = ejs.compile("<div class=\"content\">\n    <div class=\"article-short\">\n        <img src=\"<%= article.image %>\">\n        <div class=\"scrolling\">\n            <h3><%= article.title %></h3>\n            <p><%= article.content.substring(0, 175) + \"...\" %></p>\n            <a href=\"#\">Читати далi >> </a>\n        </div>\n    </div>\n</div>");
 exports.Product_Normal_OneItem = ejs.compile("\n<tr>\n    <td class=\"td__remove\">\n        <a href=\"javascript:void(0);\" class=\"a__remove desc\">\n            &#x2718\n        </a>\n    </td>\n    <td class=\"td__nums\"><%= counter %></td>\n    <td class=\"td__product\"><%= product.title %></td>\n    <td><%= mass %></td>\n    <td><%= (product.proteins * mass * 0.01).toFixed(2) %></td>\n    <td><%= (product.fats * mass * 0.01).toFixed(2) %></td>\n    <td><%= (product.carbohydrates * mass * 0.01).toFixed(2)%></td>\n    <td><%= (product.calories * mass * 0.01).toFixed(2) %></td>\n</tr>");
 exports.Product_Small_OneItem = ejs.compile("\n<tr>\n    <td class=\"td__nums\"><%= counter %></td>\n    <td class=\"td__product\">\n        <div>Product</div>\n        <div>Mass (g)</div>\n        <div>Proteins (g)</div>\n        <div>Fats (g)</div>\n        <div>Carbohydrates (g)</div>\n        <div>Calories (kcal)</div>\n    </td>\n    <td class=\"td__name\">\n        <div><%= product.title %></div>\n        <div><%= mass %></div>\n        <div><%= (product.proteins * mass * 0.01).toFixed(2) %></div>\n        <div><%= (product.fats * mass * 0.01 ).toFixed(2) %></div>\n        <div><%= (product.carbohydrates * mass * 0.01 ).toFixed(2) %></div>\n        <div><%= (product.calories * mass * 0.01).toFixed(2) %></div>\n    </td>\n    <td class=\"td__remove\"><a href=\"javascript:void(0);\" class=\"a__remove\">&#x2718</a>\n    </td>\n</tr>");
 },{"ejs":10}],7:[function(require,module,exports){

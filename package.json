@@ -7,7 +7,7 @@
     "start": "node server.js",
     "bot": "nodemon Backend/HealzyBot/index.js",
     "calorizator": "nodemon Backend/Calorizator/calorizator.js",
-    "blog": "nodemon Backend/Articles/articles.js",
+    "blog": "nodemon Backend/Articles/articlebd.js",
     "site": "nodemon Backend/main.js"
   },
   "author": "",
