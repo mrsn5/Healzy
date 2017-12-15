@@ -92,8 +92,7 @@ function updateList(){
             calories: parseFloat(0)
         };
 
-
-    Product_List.forEach(calculateSum);
+  Product_List.forEach(calculateSum);
 
     $('.weight_total').text(sum.mass);
     $('.proteins_total').text(sum.proteins);
@@ -157,16 +156,25 @@ function initCalc() {
 }
 
 $(".addProduct").click(function () {
-    if($inputProduct.val().trim()!=="" && $inputMass.val().trim()!==""){
+    if($inputProduct.val().trim()!=="" && $inputMass.val().trim()!=="" && $inputMass.val()>0 ){
         for(i=0; i<allProducts.length; i++){
             if($inputProduct.val().trim()===allProducts[i].title){
                 addOneProduct(allProducts[i], parseFloat($inputMass.val()));
                 $inputProduct.val("");
                 $inputMass.val("");
+                $inputMass.removeClass("wrong_input");
+                $inputProduct.removeClass("wrong_input");
             }
         }
     }
+    else if($inputMass.val().trim()==="" || $inputMass.val()<=0 || !Number.isInteger($inputMass.val())){
+        $inputMass.addClass("wrong_input");
+    }
+    else if($inputProduct.val().trim()===""){
+        $inputProduct.addClass("wrong_input");
+    }
 });
+
 function WrappedProduct(product, mass) {
     this.product = product;
     this.mass = mass;
