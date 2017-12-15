@@ -31,7 +31,7 @@ function configureEndpoints(app) {
 
 }
 
-function startServer(ip, port) {
+function startServer(port) {
     //Створюється застосунок
     var app = express();
 
@@ -50,8 +50,8 @@ function startServer(ip, port) {
     configureEndpoints(app);
 
     //Запуск додатка за вказаним портом
-    app.listen(port, ip, function () {
-        console.log( "Listening on " + ip + ", server_port " + port  );
+    app.listen(port, function () {
+        console.log( "Listening on localhost:" + port  );
 
     });
 }

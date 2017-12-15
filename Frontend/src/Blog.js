@@ -65,11 +65,61 @@ $("#dietsf").click(function () {
     showArticles();
 });
 
+
+
+
+
 function showOneArticle(article) {
     var html_code = Templates.ArticleReview_OneItem({article: article});
     var $node = $(html_code);
+    $node.find("a").click(function () {
+        //alert(article);
+        $('#blackout').show();
+        var boxWidth = $(window).width()*0.90;
+        var winHeight = ($(window).height() - 80)*0.90;
+        var left = $(window).width()*0.1 / 2;
+        var top = 80 + $(window).height()*0.1 / 2;
+
+        $('#title-a').text(article.title);
+        $('#text-a').text(article.content);
+
+
+        $('#popup-box').css({'width' : boxWidth+'px','height' : winHeight+'px', 'left' : left+'px', 'top' : top+'px'});
+        $('#popup-box').show();
+        $('#img-a').attr('src', article.image);
+        $('.bottom').css({'height' : (winHeight-top/2)+'px'});
+    });
     $article_list.append($node);
 }
+
+
+
+$('#close').click(function () {
+    $('#popup-box').hide();
+    $('#blackout').hide();
+
+});
+
+function centerBox() {
+
+    /* определяем нужные данные */
+    var winWidth = $(window).width();
+    var winHeight = $(document).height();
+    var scrollPos = $(window).scrollTop();
+
+    /* Вычисляем позицию */
+
+    var disWidth = (winWidth - boxWidth) / 2
+    var disHeight = scrollPos + 150;
+
+    /* Добавляем стили к блокам */
+    $('.popup-box').css({'width' : boxWidth+'px', 'left' : disWidth+'px', 'top' : disHeight+'px'});
+    $('#blackout').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
+
+    return false;
+}
+
+
 
 function showArticles() {
     maxPage = Math.floor(Articles_List.length / 5);
