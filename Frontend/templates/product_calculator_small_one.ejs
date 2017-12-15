@@ -1,0 +1,22 @@
+
+<tr>
+    <td class="td__nums"><%= counter %></td>
+    <td class="td__product">
+        <div>Product</div>
+        <div>Mass (g)</div>
+        <div>Proteins (g)</div>
+        <div>Fats (g)</div>
+        <div>Carbohydrates (g)</div>
+        <div>Calories (kcal)</div>
+    </td>
+    <td class="td__name">
+        <div><%= product.title %></div>
+        <div><%= mass %></div>
+        <div><%= (product.proteins * mass * 0.01).toFixed(2) %></div>
+        <div><%= (product.fats * mass * 0.01 ).toFixed(2) %></div>
+        <div><%= (product.carbohydrates * mass * 0.01 ).toFixed(2) %></div>
+        <div><%= (product.calories * mass * 0.01).toFixed(2) %></div>
+    </td>
+    <td class="td__remove"><a href="javascript:void(0);" class="a__remove">&#x2718</a>
+    </td>
+</tr>

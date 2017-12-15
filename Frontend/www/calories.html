@@ -9,18 +9,18 @@
     &lt;!&ndash; Bootsrap CSS &ndash;&gt;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     &lt;!&ndash; LESS основний файл &ndash;&gt;
-    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less"/>
     &lt;!&ndash; LESS JavaScript компілятор &ndash;&gt;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
 
 
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-          rel = "stylesheet">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
 
     &lt;!&ndash; jQuery JavaScript &ndash;&gt;
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     &lt;!&ndash;<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>&ndash;&gt;
-    <script src = "https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
 <body>
@@ -39,7 +39,7 @@
                 <li><a href="index.html#aboutUs">About</a></li>
                 <li><a href="#">Calories</a></li>
                 <li><a href="gyms.html">Gyms</a></li>
-                <li><a class="lastLI"  href="blog.html">Blog</a></li>
+                <li><a class="lastLI" href="blog.html">Blog</a></li>
             </ul>
         </div>
     </div>
@@ -57,62 +57,164 @@
                 </div>
             </h1>
             <div class="search_input">
-                <div class="row search">
-                    <div class="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <span class="input-group-btn">
-                            <button id="searchJewButton" class="btn btn-danger" type="button">
-                                <span class=" glyphicon glyphicon-search"></span>
-                            </button>
-                            </span>
-                            <input id="searchJewelries" type="text" class="  search-query form-control" placeholder="Search product..." />
 
+                <div class="row search col-sm-6">
+                    <div class=" custom-search-input">
+                        <div class="ui-widget">
+                            <div class="input-group col-md-12">
+                            <span class="input-group-btn">
+                                <button id="searchJewButton" class="btn btn-danger" type="button" disabled>
+                                    <span class=" glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                                <input id="automplete" type="text" class="earch-query form-control"
+                                       placeholder="Search product..."/>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-3 forMass">
+                    <input class="mass" type="number" placeholder="Mass, g" pattern="/d"/>
+                </div>
+                <div class="col-sm-3 butAdd">
+                    <button class=" addProduct btn btn-danger">Add product</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-&lt;!&ndash;
-<div class="container">
-    <div class="col-md-6" style="height:300px; background: red; ">
-        <div class="table_products">
-
-        </div>
-    </div>
-    <div class="col-md-6" style="height:300px; background: blue;">>
-        <div class="results">
-
-        </div>
-    </div>
-</div>&ndash;&gt;
 
 
+<div class="container" style="padding-top: 15px;">
+    &lt;!&ndash;WHEN NORMAL SCREEN&ndash;&gt;
+    <table class="kalorizator__table hidden-xs" id="tovar">
+        <colgroup>
+            <col width="60" class="col1" />
+            <col width="22" class="col2" />
+            <col width="210" class="col3" />
+            <col width="auto" />
+            <col width="auto" />
+            <col width="auto" />
+            <col width="auto" />
+            <col width="auto" />
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="td__remove"></th>
+            <th class="td__nums"></th>
+            <th class="td__product">Product</th>
+            <th>Mass (g)</th>
+            <th>Proteins (g)</th>
+            <th>Fats (g)</th>
+            <th>Carbs (g)</th>
+            <th>Calories (kcal)</th>
+        </tr>
+        </thead>
+        <tbody id="table_normal">
 
-<div class = "ui-widget">
-    <p>Type two letter for e.g:ja,sc etc</p>
-    <label for = "automplete-3">Tags: </label>
-    <input id = "automplete-3">
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="td__remove"></td>
+            <td class="td__nums"></td>
+            <td class="td__product">Summary:</td>
+            <td class="weight_total">0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+        </tr>
+        <tr>
+            <td class="td__remove"></td>
+            <td class="td__nums"></td>
+            <td class="td__product">Summary for 100 g:</td>
+            <td class="weight_total_hundr">0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    &lt;!&ndash;WHEN SMALL SCREEN&ndash;&gt;
+    <table class="kalorizator__table hidden-sm hidden-md hidden-lg" id="koloriz_m">
+        <colgroup>
+            <col width="22" class="col2" />
+            <col width="136" class="col3" />
+            <col width="auto" />
+            <col width="60" class="col1" />
+        </colgroup>
+        <tbody id="table_small">
+
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="td__nums"></td>
+            <td class="td__product td__product-total" colspan="2">
+                Summary:
+            </td>
+            <td class="td__remove"></td>
+        </tr>
+        <tr>
+            <td class="td__nums"></td>
+            <td class="td__product">
+                <div>Mass (g)</div>
+                <div>Proteins (g)</div>
+                <div>Fats (g)</div>
+                <div>Carbs (g)</div>
+                <div>Calories (kcal)</div>
+            </td>
+            <td class="td__name">
+                <div>0.00</div>
+                <div>0.00</div>
+                <div>0.00</div>
+                <div>0.00</div>
+                <div>0.00</div>
+            </td>
+            <td class="td__remove" ></td>
+        </tr>
+        <tr>
+            <td class="td__nums"></td>
+            <td class="td__product">
+                <div>Mass for 100 g</div>
+                <div>Proteins for 100 g</div>
+                <div>Fats for 100 g</div>
+                <div>Carbs for 100 g</div>
+                <div>Calories for 100 g</div>
+            </td>
+            <td class="td__name">
+                <div>0.00</div>
+                <div>0.00</div>
+                <div>0.00</div>
+                <div>0.00</div>
+                <div>0.00</div>
+            </td>
+            <td class="td__remove"></td>
+        </tr>
+        </tfoot>
+
+    </table>
 </div>
+
 
 
 
 <footer>
     <details>
-        <summary>&#169;Nguyen&Manzhura, 2017 </summary>
+        <summary>&#169;Nguyen&Manzhura, 2017</summary>
         <p>This site is created by sophomores of 'Kyiv-Mohyla Academy' Anne Manzhura and San Nguyen.</p>
     </details>
 </footer>
-
-
-
 
 
 &lt;!&ndash; Bootstrap JavaScript &ndash;&gt;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 &lt;!&ndash; Own JavaScript &ndash;&gt;
-<script type="text/javascript"  src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
 </body>
-</html>-->
+</html>
+-->
