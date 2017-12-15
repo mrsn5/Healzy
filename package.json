@@ -2,11 +2,13 @@
   "name": "Healzy",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "bot": "nodemon Backend/HealzyBot/index.js",
     "calorizator": "nodemon Backend/Calorizator/calorizator.js",
-    "blog": "nodemon Backend/Articles/articles.js"
+    "blog": "nodemon Backend/Articles/articles.js",
+    "site": "nodemon Backend/main.js"
   },
   "author": "",
   "license": "ISC",

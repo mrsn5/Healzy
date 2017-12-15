@@ -1,6 +1,4 @@
-
-var API_URL = "http://localhost:5050";
-
+var API_URL = 'http://localhost:5050';
 
 function backendGet(url, callback) {
 
@@ -15,6 +13,7 @@ function backendGet(url, callback) {
         }
     })
 }
+
 
 function backendPost(url, data, callback) {
     $.ajax({

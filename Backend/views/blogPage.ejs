@@ -17,8 +17,8 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a>Diets</a></li>
-                            <li><a>Cocktails</a></li>
+                            <li><a id="dietsf">Diets</a></li>
+                            <li><a id="cocktailsf">Cocktails</a></li>
                         </ul>
                     </div>
                 </li>
@@ -30,13 +30,14 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a>Recipes</a></li>
-                            <li><a>Articles</a></li>
+                            <li><a id="recipesf">Recipes</a></li>
+                            <li><a id="articlesf">Articles</a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
         </div>
+
 
         <div class="sorting col-md-8">
             <div class="category_header">
@@ -63,9 +64,30 @@
 
             </div>
 
+            <ul class="pagination">
+                <li id="prev" class="disabled">
+                        <span aria-hidden="true">&laquo;</span>
+                </li>
+                <li id="next">
+                        <span aria-hidden="true">&raquo;</span>
+                </li>
+            </ul>
+
         </div>
 
     </div>
 </div>
+
+<div class="popup-box" id="popup-box">
+    <div id="close">X</div>
+    <div class="top">
+        <h2 id="title-a"></h2>
+    </div>
+    <div class="bottom" id="text-a">
+        <img id="img-a" src="" style="float: right">
+    </div>
+</div>
+
+<div id="blackout"></div>
 
 <% include common/footer.ejs %>

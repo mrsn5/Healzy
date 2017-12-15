@@ -92,7 +92,7 @@ function updateList(){
             calories: parseFloat(0)
         };
 
-    Product_List.forEach(calculateSum);
+  Product_List.forEach(calculateSum);
 
     $('.weight_total').text(sum.mass);
     $('.proteins_total').text(sum.proteins);
