@@ -1,6 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (process){
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
-var API_URL = "http://localhost:5051";
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+
+var API_URL = 'http://' + server_ip_address + ':' + server_port;
 
 function backendGet(url, callback) {
 
@@ -40,7 +44,8 @@ exports.findProduct = function(product_info, callback) {
     backendPost("/api/find-product/", product_info, callback);
 };
 
-},{}],2:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":12}],2:[function(require,module,exports){
 /**
  * Created by sannguyen on 13.12.17.
  */
@@ -139,7 +144,9 @@ function init() {
     console.log("++++++++++++++++++++INIT");
     API.getArticleList(function(err, list) {
         if(err) {
-            alert("Can't load article list ");
+            //alert("Can't load article list ");
+            console.log(err);
+
         } else {
             Articles_List = list;
             All_Articles = list;
