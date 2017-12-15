@@ -3,7 +3,7 @@
         <img src="<%= article.image %>">
         <div class="scrolling">
             <h3><%= article.title %></h3>
-            <p><%= article.content %></p>
+            <p><%= article.content.substring(0, 175) + "..." %></p>
             <a href="#">Читати далi >> </a>
         </div>
     </div>
