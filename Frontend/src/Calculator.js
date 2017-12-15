@@ -73,6 +73,26 @@ function updateList(){
     Storage.set("list",Product_List);
 
     Product_List.forEach(showOnePizzaInCart);
+
+    sum=
+        {
+            mass: parseFloat(0),
+            proteins:parseFloat(0),
+            fats: parseFloat(0),
+            carbs: parseFloat(0),
+            calories: parseFloat(0)
+        };
+
+    sumPer100g=
+        {
+            mass: parseFloat(100),
+            proteins:parseFloat(0),
+            fats: parseFloat(0),
+            carbs: parseFloat(0),
+            calories: parseFloat(0)
+        };
+
+
     Product_List.forEach(calculateSum);
 
     $('.weight_total').text(sum.mass);

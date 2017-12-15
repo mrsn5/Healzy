@@ -1,10 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-(function (process){
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-
-var API_URL = 'http://' + server_ip_address + ':' + server_port;
+var API_URL = 'http://localhost:5050';
 
 function backendGet(url, callback) {
 
@@ -19,6 +14,7 @@ function backendGet(url, callback) {
         }
     })
 }
+
 
 function backendPost(url, data, callback) {
     $.ajax({
@@ -44,8 +40,7 @@ exports.findProduct = function(product_info, callback) {
     backendPost("/api/find-product/", product_info, callback);
 };
 
-}).call(this,require('_process'))
-},{"_process":12}],2:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 /**
  * Created by sannguyen on 13.12.17.
  */
@@ -113,11 +108,59 @@ $("#dietsf").click(function () {
     showArticles();
 });
 
+
+
+
+
 function showOneArticle(article) {
     var html_code = Templates.ArticleReview_OneItem({article: article});
     var $node = $(html_code);
+    $node.find("a").click(function () {
+        //alert(article);
+        $('#blackout').show();
+        var boxWidth = $(window).width()*0.90;
+        var winHeight = ($(window).height() - 80)*0.90;
+        var left = $(window).width()*0.1 / 2;
+        var top = 80 + $(window).height()*0.1 / 2;
+
+        $('#title-a').text(article.title);
+        $('#text-a').text(article.content);
+
+
+        $('#popup-box').css({'width' : boxWidth+'px','height' : winHeight+'px', 'left' : left+'px', 'top' : top+'px'});
+        $('#popup-box').show();
+        $('.bottom').css({'height' : (winHeight-top/2)+'px'})
+    });
     $article_list.append($node);
 }
+
+
+$('#close').click(function () {
+    $('#popup-box').hide();
+    $('#blackout').hide();
+
+});
+
+function centerBox() {
+
+    /* определяем нужные данные */
+    var winWidth = $(window).width();
+    var winHeight = $(document).height();
+    var scrollPos = $(window).scrollTop();
+
+    /* Вычисляем позицию */
+
+    var disWidth = (winWidth - boxWidth) / 2
+    var disHeight = scrollPos + 150;
+
+    /* Добавляем стили к блокам */
+    $('.popup-box').css({'width' : boxWidth+'px', 'left' : disWidth+'px', 'top' : disHeight+'px'});
+    $('#blackout').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
+
+    return false;
+}
+
+
 
 function showArticles() {
     maxPage = Math.floor(Articles_List.length / 5);
@@ -240,7 +283,6 @@ function calculateSum(wrappedProduct){
     sumPer100g.fats=(parseFloat(sumPer100g.fats) + parseFloat(wrappedProduct.product.fats)).toFixed(2);
     sumPer100g.carbs=(parseFloat(sumPer100g.carbs) + parseFloat(wrappedProduct.product.carbohydrates)).toFixed(2);
     sumPer100g.calories=(parseFloat(sumPer100g.calories) + parseFloat(wrappedProduct.product.calories)).toFixed(2);
-
 }
 
 function updateList(){
@@ -271,6 +313,26 @@ function updateList(){
     Storage.set("list",Product_List);
 
     Product_List.forEach(showOnePizzaInCart);
+
+    sum=
+        {
+            mass: parseFloat(0),
+            proteins:parseFloat(0),
+            fats: parseFloat(0),
+            carbs: parseFloat(0),
+            calories: parseFloat(0)
+        };
+
+    sumPer100g=
+        {
+            mass: parseFloat(100),
+            proteins:parseFloat(0),
+            fats: parseFloat(0),
+            carbs: parseFloat(0),
+            calories: parseFloat(0)
+        };
+
+
     Product_List.forEach(calculateSum);
 
     $('.weight_total').text(sum.mass);
@@ -308,6 +370,7 @@ function initCalc() {
             });
         }
     });
+
     sum=
         {
             mass: parseFloat(0),
@@ -325,7 +388,6 @@ function initCalc() {
             carbs: parseFloat(0),
             calories: parseFloat(0)
         };
-
 
     var saved_products = Storage.get("list");
     if (saved_products)
