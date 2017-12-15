@@ -96,7 +96,9 @@ function init() {
     console.log("++++++++++++++++++++INIT");
     API.getArticleList(function(err, list) {
         if(err) {
-            alert("Can't load article list ");
+            //alert("Can't load article list ");
+            console.log(err);
+
         } else {
             Articles_List = list;
             All_Articles = list;
