@@ -2,7 +2,7 @@
 
 
 <div class="headerSearch">
-    <div class="fixed_width">
+    <div class="fixed_width container" style="padding-top:0;">
         <div class="inner_foodSearch">
             <h1 class="titleSearch">
                 <div class="heading_title">
@@ -13,29 +13,145 @@
                 </div>
             </h1>
             <div class="search_input">
-                <div class="row search">
+                <div class=" search col-sm-6">
+                    <div class=" custom-search-input">
+                        <div class="ui-widget">
+                            <div class="input-group col-md-12">
+                            <span class="input-group-btn">
+                                <div id="searchJewButton" disabled>
+                                    <span class=" glyphicon glyphicon-search"></span>
+                                </div>
+                            </span>
+                                <input id="automplete" type="text" class="earch-query form-control"
+                                       placeholder="Search product..."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 forMass">
+                    <input id="massInput" class="mass" type="number" placeholder="Mass, g" pattern="/d"/>
+                </div>
+                <div class="col-sm-3 butAdd">
+                    <button class=" addProduct btn btn-danger">Add product</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--<span class="glyphicon glyphicon-scale"></span>-->
 
-<div class="container">
-    <div class = "ui-widget">
-        <div class="input-group col-md-12">
-            <span class="input-group-btn">
-                <button id="searchJewButton" class="btn btn-danger" type="button">
-                    <span class=" glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-            <input id="automplete" type="text" class="earch-query form-control" placeholder="Search product..." />
-        </div>
-    </div>
+<div class="container" style="padding-top: 15px;">
+    <!--WHEN NORMAL SCREEN-->
+    <table class="kalorizator__table hidden-xs" id="tovar">
+        <colgroup>
+            <col width="60" class="col1" />
+            <col width="22" class="col2" />
+            <col width="210" class="col3" />
+            <col width="auto" />
+            <col width="auto" />
+            <col width="auto" />
+            <col width="auto" />
+            <col width="auto" />
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="td__remove"></th>
+            <th class="td__nums"></th>
+            <th class="td__product">Product</th>
+            <th>Mass (g)</th>
+            <th>Proteins (g)</th>
+            <th>Fats (g)</th>
+            <th>Carbs (g)</th>
+            <th>Calories (kcal)</th>
+        </tr>
+        </thead>
+        <tbody id="table_normal">
+
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="td__remove"></td>
+            <td class="td__nums"></td>
+            <td class="td__product">Summary:</td>
+            <td class="weight_total">0.00</td>
+            <td class="proteins_total">0.00</td>
+            <td class="fats_total">0.00</td>
+            <td class="carbs_total">0.00</td>
+            <td class="cals_total">0.00</td>
+        </tr>
+        <tr>
+            <td class="td__remove"></td>
+            <td class="td__nums"></td>
+            <td class="td__product">Summary for 100 g:</td>
+            <td class="weight_total_hundr">100</td>
+            <td class="proteins_total_hundr">0.00</td>
+            <td class="fats_total_hundr">0.00</td>
+            <td class="carbs_total_hundr">0.00</td>
+            <td class="cals_total_hundr">0.00</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <!--WHEN SMALL SCREEN-->
+    <table class="kalorizator__table hidden-sm hidden-md hidden-lg" id="koloriz_m">
+        <colgroup>
+            <col width="22" class="col2" />
+            <col width="136" class="col3" />
+            <col width="auto" />
+            <col width="60" class="col1" />
+        </colgroup>
+        <tbody id="table_small">
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="td__nums"></td>
+            <td class="td__product td__product-total" colspan="2">
+                Summary:
+            </td>
+            <td class="td__remove"></td>
+        </tr>
+        <tr>
+            <td class="td__nums"></td>
+            <td class="td__product">
+                <div>Mass (g)</div>
+                <div>Proteins (g)</div>
+                <div>Fats (g)</div>
+                <div>Carbs (g)</div>
+                <div>Calories (kcal)</div>
+            </td>
+            <td class="td__name">
+                <div class="weight_total">0.00</div>
+                <div class="proteins_total">0.00</div>
+                <div class="fats_total">0.00</div>
+                <div class="carbs_total">0.00</div>
+                <div class="cals_total">0.00</div>
+            </td>
+            <td class="td__remove" ></td>
+        </tr>
+        <tr>
+            <td class="td__nums"></td>
+            <td class="td__product">
+                <div>Mass for 100 g</div>
+                <div>Proteins for 100 g</div>
+                <div>Fats for 100 g</div>
+                <div>Carbs for 100 g</div>
+                <div>Calories for 100 g</div>
+            </td>
+            <td class="td__name">
+                <div class="weight_total_hundr">100</div>
+                <div class="proteins_total_hundr">0.00</div>
+                <div class="fats_total_hundr">0.00</div>
+                <div class="carbs_total_hundr">0.00</div>
+                <div class="cals_total_hundr">0.00</div>
+            </td>
+            <td class="td__remove"></td>
+        </tr>
+        </tfoot>
+
+    </table>
 </div>
-
-
-
-
 
 
 <% include common/footer.ejs %>

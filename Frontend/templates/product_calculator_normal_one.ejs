@@ -1,0 +1,15 @@
+
+<tr>
+    <td class="td__remove">
+        <a href="javascript:void(0);" class="a__remove desc">
+            &#x2718
+        </a>
+    </td>
+    <td class="td__nums"><%= counter %></td>
+    <td class="td__product"><%= product.title %></td>
+    <td><%= mass %></td>
+    <td><%= (product.proteins * mass * 0.01).toFixed(2) %></td>
+    <td><%= (product.fats * mass * 0.01).toFixed(2) %></td>
+    <td><%= (product.carbohydrates * mass * 0.01).toFixed(2)%></td>
+    <td><%= (product.calories * mass * 0.01).toFixed(2) %></td>
+</tr>
